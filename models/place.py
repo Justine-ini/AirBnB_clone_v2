@@ -3,14 +3,15 @@
 from models.base_model import BaseModel
 from sqlalchemy.ext.declarative import declarative_base
 
-
 Base = declarative_base()
+
+
 class Place(BaseModel, Base):
     """ A place to stay """
     __tablename__ = "places"
 
     city_id = Column(String(60), ForeignKey("cities.id"), nullable=False)
-    user_id = Colume(String(60), ForeignKey("user_id"),nullable=False)
+    user_id = Colume(String(60), ForeignKey("user_id"), nullable=False)
     name = Column(String(128), nullable=False)
     description = Column(String(1024), nullable=False)
     number_rooms = Column(Integer, nullable=False, default=0)
