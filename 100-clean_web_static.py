@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+<<<<<<< HEAD
 """
 Deletes out-of-date archives
 fab -f 100-clean_web_static.py do_clean:number=2
@@ -31,3 +32,26 @@ def do_clean(number=0):
         archives = [a for a in archives if "web_static_" in a]
         [archives.pop() for i in range(number)]
         [run("rm -rf ./{}".format(a)) for a in archives]
+=======
+""" Function that deploys """
+from fabric.api import *
+
+
+env.hosts = ['54.236.33.47', '35.175.135.250']
+env.user = "ubuntu"
+
+
+def do_clean(number=0):
+    """ CLEANS """
+
+    number = int(number)
+
+    if number == 0:
+        number = 2
+    else:
+        number += 1
+
+    local('cd versions ; ls -t | tail -n +{} | xargs rm -rf'.format(number))
+    path = '/data/web_static/releases'
+    run('cd {} ; ls -t | tail -n +{} | xargs rm -rf'.format(path, number))
+>>>>>>> e808b477e6ed01a6322c11e9350b065368963037
